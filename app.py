@@ -3,6 +3,8 @@
 
 
 import os
+import random
+import string
 from bottle import *
 
 
@@ -24,18 +26,24 @@ def index():
 @route('/upload', method='POST')
 def do_upload():
     filedata = request.files.get('fileField')
+
+    savename = ''.join(random.sample(string.ascii_letters + string.digits, 10)) + '.cpp'
     
     if filedata.file:
-        file_name = os.path.join(upload_path, filedata.filename)
-        print(filedata.filename)
+        file_name = os.path.join(upload_path, savename)
+        print(savename)
         try:
             filedata.save(file_name)  # 上传文件写入
         except IOError:
             return '上传文件失败'
-        return '上传文件成功, 文件名: {}'.format(file_name)
+        return '上传文件成功, 文件名: {}'.format('192.68.4.124/upload/' + savename)
+##        return '上传文件成功, 文件名: {}'.format(file_name)
     else:
         return '上传文件失败'
 
+@route('/upload/<filename>')
+def show_code(filename):
+    return static_file(filename, './upload/')
 """
 @route('/favicon.ico', method='GET')
 def server_static():
@@ -48,5 +56,5 @@ def error404(error):
     return '404 发生页面错误, 未找到内容'
 
 
-run(host='0.0.0.0', port=8000, debug=True)
+run(host='0.0.0.0', port=80, debug=True)
 
