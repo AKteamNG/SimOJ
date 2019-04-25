@@ -26,7 +26,7 @@ def index():
 @route('/upload', method='POST')
 def do_upload():
     filedata = request.files.get('fileField')
-
+	
     savename = ''.join(random.sample(string.ascii_letters + string.digits, 10)) + '.cpp'
     
     if filedata.file:
