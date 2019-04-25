@@ -64,7 +64,7 @@ def do_upload():
         print(save_name)
         problem_id = value
         judge(simp_name, problem_id)
-        return '<script>window.location.href="'+site + '/upload/' + simp_name + '.txt'+'"</script> 上传文件成功, 文件名: {}'.format(site + '/upload/' + save_name) + '评测结果：{}'.format(site + '/upload/' + simp_name + '.txt')
+        return '<script>window.location.href="' + 'upload/' + simp_name + '.txt'+'"</script> 上传文件成功, 文件名: {}'.format(site + '/upload/' + save_name) + '评测结果：{}'.format(site + '/upload/' + simp_name + '.txt')
 
 ##        return '上传文件成功, 文件名: {}'.format(file_name)
     else:
