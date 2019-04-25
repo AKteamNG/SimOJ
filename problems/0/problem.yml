@@ -1,0 +1,23 @@
+type: traditional
+cases:
+    - args: ['1', '1']
+    - args: ['100000', '200000']
+cases-global:
+    memory-limit: 128MB
+    time-limit: 1000ms
+    input-file: test.in
+    output-file: test.out
+    input-data: data/data{name}.in
+    answer-data: data/data{name}.out
+    gen: true
+subtasks:
+    - score: 40
+      testcases: [1]
+    - score: 60
+      testcases: [1, 2]
+languages:
+    cpp:
+        flags: ['-O2']
+build:
+    input-gen: gen.cpp
+    answer-gen: std_gen.cpp
