@@ -7,6 +7,7 @@ import random
 import string
 from bottle import *
 
+site = '192.68.4.124'
 
 base_path = os.path.dirname(os.path.realpath(__file__))  # 获取脚本路径
 
@@ -22,28 +23,42 @@ if not os.path.exists(upload_path):
 def index():
     return static_file('index.html', './')
 
+def judge(simp_name, problem_id):
+    print('cp ./upload/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
+    os.system('cp ./upload/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
+    print('cd ./problems/' + problem_id + ' && syzoj judge ' + simp_name + '.cpp > ' + simp_name + '.txt')
+    os.system('cd ./problems/' + problem_id + ' && syzoj judge ' + simp_name + '.cpp > ' + simp_name + '.txt')
+    print('rm ./problems/' + problem_id + '/' + simp_name + '.cpp')
+    os.system('rm ./problems/' + problem_id + '/' + simp_name + '.cpp')
+    print('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './upload/' + simp_name + '.txt')
+    os.system('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './upload/' + simp_name + '.txt')
 
 @route('/upload', method='POST')
 def do_upload():
     filedata = request.files.get('fileField')
-	
-    savename = ''.join(random.sample(string.ascii_letters + string.digits, 10)) + '.cpp'
+
+    simp_name = ''.join(random.sample(string.ascii_letters + string.digits, 10))
+    save_name = simp_name + '.cpp'
     
     if filedata.file:
-        file_name = os.path.join(upload_path, savename)
-        print(savename)
+        file_name = os.path.join(upload_path, save_name)
         try:
             filedata.save(file_name)  # 上传文件写入
         except IOError:
             return '上传文件失败'
-        return '上传文件成功, 文件名: {}'.format('192.68.4.124/upload/' + savename)
+        print(save_name)
+        problem_id = '0'
+        judge(simp_name, problem_id)
+        return '上传文件成功, 文件名: {}'.format(site + '/upload/' + save_name) + '评测结果：{}'.format(site + '/upload/' + simp_name + '.txt')
+
 ##        return '上传文件成功, 文件名: {}'.format(file_name)
     else:
         return '上传文件失败'
 
-@route('/upload/<filename>')
-def show_code(filename):
-    return static_file(filename, './upload/')
+@route('/upload/<file_name>')
+def show_code(file_name):
+    print(file_name)
+    return static_file(file_name, './upload/')
 """
 @route('/favicon.ico', method='GET')
 def server_static():
