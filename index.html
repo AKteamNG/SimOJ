@@ -19,7 +19,9 @@
     </script>
 </head>
 <body>
-    <button value="Button A - OFF" onClick='buttonTrigger(this.value)'>Button A</button>
+	 <input type="text" value="" id="textId">
+<!--    <button value="Button A - OFF" onClick='buttonTrigger(this.value)'>Button A</button>   -->
+    <button value="Button A - OFF" onClick='buttonTrigger(document.getElementById("textId").value )'>Button A</button>
     <div id="output"></div>
 </body>
 </html>
