@@ -1,0 +1,15 @@
+type: traditional
+cases: 1
+cases-global:
+    memory-limit: 128MB
+    time-limit: 1000ms
+    input-file: hello.in
+    output-file: hello.out
+    input-data: data/data{name}.in
+    answer-data: data/data{name}.out
+subtasks:
+    - score: 100
+      testcases: [1]
+languages:
+    cpp:
+        flags: ['-O2']
