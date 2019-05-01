@@ -44,40 +44,34 @@ def judge(simp_name, problem_id):
     print('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './upload/' + simp_name + '.txt')
     os.system('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './upload/' + simp_name + '.txt')
 
-@route('/upload/command')
-def command():
-	global value  
-	value=request.query.value
-
 @route('/upload', method='POST')
 def do_upload():
-    filedata = request.files.get('fileField')
+    problem_id = request.forms.get('ProblemId')
+    code = request.forms.get('answer')
+    
     simp_name = ''.join(random.sample(string.ascii_letters + string.digits, 10))
     save_name = simp_name + '.cpp'
-#    print(value)
-    if filedata.file:
-        file_name = os.path.join(upload_path, save_name)
-        try:
-            filedata.save(file_name)  # 上传文件写入
-        except IOError:
-            return '上传文件失败'
-        print(save_name)
-        problem_id = value
-        judge(simp_name, problem_id)
-        return '<script>window.location.href="' + 'upload/' + simp_name + '.txt'+'"</script> 上传文件成功, 文件名: {}'.format(site + '/upload/' + save_name) + '评测结果：{}'.format(site + '/upload/' + simp_name + '.txt')
-
-##        return '上传文件成功, 文件名: {}'.format(file_name)
-    else:
-        return '上传文件失败'
+    file_name = os.path.join(upload_path, save_name)
+    print(file_name)
+    try:
+        tmpfile = open(file_name, "w")
+        tmpfile.write(code)  # 提交代码写入
+        tmpfile.close()
+    except IOError:
+        return '提交代码失败'
+    judge(simp_name, problem_id)
+    return '<script>window.location.href="' + 'upload/' + simp_name + '.txt'+'"</script> 提交代码成功, 文件名: {}'.format(site + '/upload/' + save_name) + '评测结果：{}'.format(site + '/upload/' + simp_name + '.txt')
 
 @route('/upload/<file_name>')
 def show_code(file_name):
-    print(file_name)
+    #print(file_name)
     return static_file(file_name, './upload/')
 
+@route('/static/<file_name>')
+def show_code(file_name):
+    #print(file_name)
+    return static_file(file_name, './static/')
 
-
-    
 @error(404)
 def error404(error):
     return '404 发生页面错误, 未找到内容'

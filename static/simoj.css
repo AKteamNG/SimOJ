@@ -1,0 +1,123 @@
+body {
+  font-size: 14px;
+  text-align: center;
+}
+
+input {
+  vertical-align: center;
+  margin: 0;
+  padding: 0
+}
+
+.file-box {
+  position: relative;
+  width: 340px;
+  margin: 0px auto;
+}
+
+.txt {
+  height: 22px;
+  border: 1px solid #cdcdcd;
+  width: 180px;
+}
+
+.btn {
+  background-color: #FFF;
+  border: 1px solid #CDCDCD;
+  height: 24px;
+  width: 70px;
+}
+
+.file {
+  position: absolute;
+}
+
+.box {
+  text-align: center;
+  float: left;
+  padding: 15px;
+  width: 800px;
+  height: auto;
+  min-height: 300px;
+  border: 1px solid black;
+}
+
+.hitokoto {
+  float: left;
+  margin: 0px 5px;
+  padding: 15px;
+  width: 300px;
+  height: 304px;
+  border: 1px solid black;
+}
+
+.flex-text-wrap {
+  position: relative;
+  *zoom: 1;
+}
+
+textarea,
+.flex-text-wrap {
+  outline: 0;
+  margin: 0;
+  border: none;
+  padding: 0;
+
+  *padding-bottom: 0 !important;
+}
+
+.flex-text-wrap textarea,
+.flex-text-wrap pre {
+  white-space: pre-wrap;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  *white-space: pre;
+  *word-wrap: break-word;
+}
+
+.flex-text-wrap textarea {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  resize: none;
+
+  /* IE7 box-sizing fudge factor */
+  *height: 94%;
+  *width: 94%;
+}
+
+.flex-text-wrap pre {
+  display: block;
+  visibility: hidden;
+}
+
+textarea,
+.flex-text-wrap pre {
+  /*
+   * Add custom styling here
+   * Ensure that typography, padding, border-width (and optionally min-height) are identical across textarea & pre
+   */
+  width: 750px;
+  min-height: 160px;
+  display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: rgb(0, 0, 0);
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid rgb(99, 97, 195);
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
