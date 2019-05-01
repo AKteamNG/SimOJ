@@ -262,7 +262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // default textarea styles
 	  style.whiteSpace = 'pre-wrap';
 	  if (element.nodeName !== 'INPUT')
-	    style.wordWrap = 'break-word';  // only for textarea-s
+	    style.wordWrap = 'nowrap';  // only for textarea-s
 
 	  // position off-screen
 	  style.position = 'absolute';  // required to return coordinates properly

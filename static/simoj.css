@@ -94,8 +94,8 @@ textarea, .flex-text-wrap {
 textarea:focus {
   border-color: #66afe9;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 textarea, .flex-text-wrap pre {
@@ -103,6 +103,7 @@ textarea, .flex-text-wrap pre {
    * Add custom styling here
    * Ensure that typography, padding, border-width (and optionally min-height) are identical across textarea & pre
    */
+  
   min-height: 160px;
   display: block;
   width: 100%;
