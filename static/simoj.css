@@ -56,24 +56,19 @@ input {
   *zoom: 1;
 }
 
-textarea,
-.flex-text-wrap {
-  outline: 0;
+textarea, .flex-text-wrap {
   margin: 0;
   border: none;
   padding: 0;
-
   *padding-bottom: 0 !important;
 }
 
-.flex-text-wrap textarea,
-.flex-text-wrap pre {
+.flex-text-wrap textarea, .flex-text-wrap pre {
   white-space: pre-wrap;
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-
   *white-space: pre;
   *word-wrap: break-word;
 }
@@ -86,7 +81,6 @@ textarea,
   height: 100%;
   width: 100%;
   resize: none;
-
   /* IE7 box-sizing fudge factor */
   *height: 94%;
   *width: 94%;
@@ -97,27 +91,31 @@ textarea,
   visibility: hidden;
 }
 
-textarea,
-.flex-text-wrap pre {
+textarea:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+textarea, .flex-text-wrap pre {
   /*
    * Add custom styling here
    * Ensure that typography, padding, border-width (and optionally min-height) are identical across textarea & pre
    */
-  width: 750px;
   min-height: 160px;
   display: block;
-    width: 100%;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: rgb(0, 0, 0);
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid rgb(99, 97, 195);
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: rgb(0, 0, 0);
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
 }

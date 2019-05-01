@@ -18,17 +18,17 @@
 
     <form action="/upload" method="post" enctype="multipart/form-data">
 
-Please select the problem: 
-<!--	<input name="hahaha" list="browsers">
+      Please select the problem:
+      <!--	<input name="hahaha" list="browsers">
 	<datalist id="browsers">
    		<option value="A+B Problem">
    		<option value="Hello World">
 	</datalist> -->
-<select name="ProblemId" id="ProblemId">
-	<option value="0">A+B Problem(test)</option>
-	<option value="1">Hello World(hello)</option>
-</select>
-<br />
+      <select name="ProblemId" id="ProblemId">
+        <option value="0">A+B Problem(test)</option>
+        <option value="1">Hello World(hello)</option>
+      </select>
+      <br />
 
       <!--<input type='text' name='textfield' id='textfield' class='txt' />-->
 
@@ -62,11 +62,14 @@ Please select the problem:
         console.error(err);
       })
   </script>
+  <script src="/static/activate-power-mode.js"></script>
   <script>
     $(function () {
       $('textarea').flexText();
     });
-
+    POWERMODE.colorful = true; // make power mode colorful
+    POWERMODE.shake = false; // turn off shake
+    document.body.addEventListener('input', POWERMODE);
   </script>
 </body>
 
