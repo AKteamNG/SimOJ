@@ -34,22 +34,32 @@ def index():
     
    
 def judge(simp_name, problem_id):
+    print('Judging ' + simp_name)
 #    print('JUDGE ' + simp_name + ' ' + problem_id)
-    print('cp ./codes/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
+#    print('cp ./codes/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
     os.system('cp ./codes/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
-    print('cd ./problems/' + problem_id + ' && syzoj judge ' + simp_name + '.cpp > ' + simp_name + '.txt')
+#    print('cd ./problems/' + problem_id + ' && syzoj judge ' + simp_name + '.cpp > ' + simp_name + '.txt')
     os.system('cd ./problems/' + problem_id + ' && syzoj judge ' + simp_name + '.cpp > ' + simp_name + '.txt')
-    print('rm ./problems/' + problem_id + '/' + simp_name + '.cpp')
+#    print('rm ./problems/' + problem_id + '/' + simp_name + '.cpp')
     os.system('rm ./problems/' + problem_id + '/' + simp_name + '.cpp')
-    print('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './codes/' + simp_name + '.txt')
-    os.system('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './codes/' + simp_name + '.txt')
+    os.system('echo "Result:" >> ./codes/' + simp_name + '.txt')
+    os.system('echo "" >> ./codes/' + simp_name + '.txt')
+    os.system('cat ./problems/' + problem_id + '/' + simp_name + '.txt' + ' >>  ' + './codes/' + simp_name + '.txt')
+    os.system('echo "" >> ./codes/' + simp_name + '.txt')
+    os.system('echo "Codes:" >> ./codes/' + simp_name + '.txt')
+    os.system('echo "" >> ./codes/' + simp_name + '.txt')
+    os.system('cat ./codes/' + simp_name + '.cpp >> ./codes/' + simp_name + '.txt');
+#    print('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './codes/' + simp_name + '.txt')
+    os.system('rm ./problems/' + problem_id + '/' + simp_name + '.txt')
+#    os.system('cat ./codes/' + simp_name + '.cpp > ./codes/' + simp_name);
+#    os.system('cat ./codes/' + simp_name + '.txt >> ./codes/' + simp_name);
 
 @route('/codes', method='POST')
 def do_upload():
     problem_id = request.forms.get('ProblemId')
     code = request.forms.get('answer')
     
-    simp_name = ''.join(random.sample(string.ascii_letters + string.digits, 10))
+    simp_name = ''.join(random.sample(string.ascii_letters + string.digits, 20))
     save_name = simp_name + '.cpp'
     file_name = os.path.join(upload_path, save_name)
     print(file_name)
