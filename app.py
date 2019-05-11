@@ -19,6 +19,7 @@ site = '192.68.4.124'
 base_path = os.path.dirname(os.path.realpath(__file__))  # 获取脚本路径
 
 upload_path = os.path.join(base_path, 'codes')   # 上传文件目录
+problem_path = os.path.join(base_path, 'problems')   # 上传文件目录
 if not os.path.exists(upload_path):
     os.makedirs(upload_path)
 
@@ -72,6 +73,29 @@ def do_upload():
         return '提交代码失败'
     judge(simp_name, problem_id)
     return '<script>window.location.href="' + 'codes/' + simp_name + '.txt'+'"</script> 提交代码成功, 文件名: {}'.format(site + '/codes/' + save_name) + '评测结果：{}'.format(site + '/codes/' + simp_name + '.txt')
+
+def extend(problem_id):
+    print('Extending ' + problem_id + '...')
+    os.system('cd ./problems/ && 7za x -o' + problem_id + ' ' + problem_id + '.zip')
+    os.system('cd ./problems/ && rm ' + problem_id + '.zip')
+    print(problem_id + ' added')
+
+
+@route('/add', method='POST')
+def add_problem():
+    problem_id = request.forms.get('ProblemId')
+    filedata = request.files.get('fileField')
+    save_name = problem_id + '.zip'
+    if filedata.file:
+        file_name = os.path.join(problem_path, save_name)
+        try:
+            filedata.save(file_name)  # 上传文件写入
+        except IOError:
+            return '上传失败'
+        extend(problem_id)
+        return '上传成功'
+    else:
+        return '上传失败'
 
 @route('/codes/<file_name>')
 def show_code(file_name):

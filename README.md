@@ -16,6 +16,12 @@
 
 并请安装`python3`，以及`bottle`库
 
+解压压缩包使用7zip，请使用下列命令安装
+
+```bash
+sudo apt install p7zip-full
+```
+
 在终端输入：
 
 ```bash
