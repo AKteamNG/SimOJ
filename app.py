@@ -18,7 +18,7 @@ site = '192.68.4.124'
 
 base_path = os.path.dirname(os.path.realpath(__file__))  # 获取脚本路径
 
-upload_path = os.path.join(base_path, 'upload')   # 上传文件目录
+upload_path = os.path.join(base_path, 'codes')   # 上传文件目录
 if not os.path.exists(upload_path):
     os.makedirs(upload_path)
 
@@ -26,7 +26,7 @@ if not os.path.exists(upload_path):
 @route('/', method='GET')
 
 
-#@route('/upload', method='GET')
+#@route('/codes', method='GET')
 #@route('/index.html', method='GET')
 #@route('/upload.html', method='GET')
 def index():
@@ -35,16 +35,16 @@ def index():
    
 def judge(simp_name, problem_id):
 #    print('JUDGE ' + simp_name + ' ' + problem_id)
-    print('cp ./upload/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
-    os.system('cp ./upload/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
+    print('cp ./codes/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
+    os.system('cp ./codes/' + simp_name + '.cpp' + ' ' + './problems/' + problem_id + '/' + simp_name + '.cpp')
     print('cd ./problems/' + problem_id + ' && syzoj judge ' + simp_name + '.cpp > ' + simp_name + '.txt')
     os.system('cd ./problems/' + problem_id + ' && syzoj judge ' + simp_name + '.cpp > ' + simp_name + '.txt')
     print('rm ./problems/' + problem_id + '/' + simp_name + '.cpp')
     os.system('rm ./problems/' + problem_id + '/' + simp_name + '.cpp')
-    print('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './upload/' + simp_name + '.txt')
-    os.system('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './upload/' + simp_name + '.txt')
+    print('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './codes/' + simp_name + '.txt')
+    os.system('mv ./problems/' + problem_id + '/' + simp_name + '.txt' + ' ' + './codes/' + simp_name + '.txt')
 
-@route('/upload', method='POST')
+@route('/codes', method='POST')
 def do_upload():
     problem_id = request.forms.get('ProblemId')
     code = request.forms.get('answer')
@@ -60,12 +60,12 @@ def do_upload():
     except IOError:
         return '提交代码失败'
     judge(simp_name, problem_id)
-    return '<script>window.location.href="' + 'upload/' + simp_name + '.txt'+'"</script> 提交代码成功, 文件名: {}'.format(site + '/upload/' + save_name) + '评测结果：{}'.format(site + '/upload/' + simp_name + '.txt')
+    return '<script>window.location.href="' + 'codes/' + simp_name + '.txt'+'"</script> 提交代码成功, 文件名: {}'.format(site + '/codes/' + save_name) + '评测结果：{}'.format(site + '/codes/' + simp_name + '.txt')
 
-@route('/upload/<file_name>')
+@route('/codes/<file_name>')
 def show_code(file_name):
     #print(file_name)
-    return static_file(file_name, './upload/')
+    return static_file(file_name, './codes/')
 
 @route('/static/<file_name>')
 def show_code(file_name):
