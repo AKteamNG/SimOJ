@@ -21,7 +21,7 @@
 ```bash
 git clone https://github.com/AKteamNG/SimOJ.git
 cd SimOJ
-python3 app.py
+sudo python3 app.py
 ```
 
 即可启动SimOJ
