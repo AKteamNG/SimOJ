@@ -24,14 +24,15 @@ if not os.path.exists(upload_path):
 
 
 @route('/', method='GET')
-
-
 #@route('/codes', method='GET')
 #@route('/index.html', method='GET')
 #@route('/upload.html', method='GET')
 def index():
     return static_file('index.html', './')
     
+@route('/create', method='GET')
+def create():
+	return static_file('create.html', './')
    
 def judge(simp_name, problem_id):
     print('Judging ' + simp_name)
