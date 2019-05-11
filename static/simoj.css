@@ -9,6 +9,10 @@ input {
   padding: 0
 }
 
+.text1{
+  clear: left
+}
+
 .file-box {
   position: relative;
   width: 340px;
